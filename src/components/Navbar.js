@@ -1,33 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const menuVariants = {
+    hidden: { x: '100%' },
+    visible: { x: 0, transition: { type: 'spring', stiffness: 120, damping: 20 } },
+    exit: { x: '100%', transition: { duration: 0.3 } }
   };
 
-  const closeMenu = () => {
-    setIsOpen(false);
-  }
+  const navItemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
 
   return (
-    <nav className="navbar">
-      <div className="nav-container">
-        <a href="#hero" className="nav-logo">NA.</a>
-        <div className={`nav-menu ${isOpen ? 'active' : ''}`}>
-          <a href="#about" className="nav-item" onClick={closeMenu}>Tentang</a>
-          <a href="#projects" className="nav-item" onClick={closeMenu}>Proyek</a>
-          <a href="#skills" className="nav-item" onClick={closeMenu}>Keahlian</a>
-          <a href="#contact" className="nav-item" onClick={closeMenu}>Kontak</a>
+    <>
+      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+        <div className="nav-container">
+          <a href="#hero" className="nav-logo">NA.</a>
+          <div className="desktop-nav-menu">
+            <a href="#about" className="nav-item">/tentang</a>
+            <a href="#projects" className="nav-item">/proyek</a>
+            <a href="#skills" className="nav-item">/keahlian</a>
+            <a href="#contact" className="nav-item">/kontak</a>
+          </div>
+          <div className="nav-icon" onClick={toggleMenu}>
+            <div className={`bar ${isOpen ? 'bar1' : ''}`}></div>
+            <div className={`bar ${isOpen ? 'bar2' : ''}`}></div>
+          </div>
         </div>
-        <div className="nav-icon" onClick={toggleMenu}>
-          <div className={`bar ${isOpen ? 'bar1' : ''}`}></div>
-          <div className={`bar ${isOpen ? 'bar2' : ''}`}></div>
-          <div className={`bar ${isOpen ? 'bar3' : ''}`}></div>
-        </div>
-      </div>
-    </nav>
+      </nav>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="mobile-nav-menu"
+            variants={menuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            <motion.div variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
+              <motion.a href="#about" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Tentang</motion.a>
+              <motion.a href="#projects" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Proyek</motion.a>
+              <motion.a href="#skills" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Keahlian</motion.a>
+              <motion.a href="#contact" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Kontak</motion.a>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

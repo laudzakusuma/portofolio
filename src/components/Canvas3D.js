@@ -29,47 +29,30 @@ function NeuralNetwork() {
   useFrame((state, delta) => {
     const { pointer, clock } = state;
     group.current.rotation.y += delta * 0.1;
-
-    // Efek paralaks mouse
     group.current.position.x = THREE.MathUtils.lerp(group.current.position.x, pointer.x * 0.3, 0.05);
     group.current.position.y = THREE.MathUtils.lerp(group.current.position.y, pointer.y * 0.3, 0.05);
-
-    // Animasi partikel
     if (particles.current) {
         particles.current.material.uniforms.time.value = clock.elapsedTime;
     }
   });
   
   const lineMaterial = new THREE.LineBasicMaterial({
-    color: '#38bdf8',
-    transparent: true,
-    opacity: 0.15
+    color: '#38bdf8', transparent: true, opacity: 0.15
   });
   
   const particleShaderMaterial = new THREE.ShaderMaterial({
       uniforms: { time: { value: 0.0 }, color: { value: new THREE.Color('#f472b6') }},
       vertexShader: `
-        uniform float time;
-        attribute float size;
-        void main() {
-          vec3 p = position;
-          p.y += sin(p.x * 2.0 + time) * 0.1;
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
-          gl_PointSize = 5.0;
-        }
-      `,
+        uniform float time; void main() {
+          vec3 p = position; p.y += sin(p.x * 2.0 + time) * 0.1;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0); gl_PointSize = 5.0;
+        }`,
       fragmentShader: `
-        uniform vec3 color;
-        void main() {
-            float r = 0.0, delta = 0.0, alpha = 1.0;
-            vec2 cxy = 2.0 * gl_PointCoord - 1.0;
-            r = dot(cxy, cxy);
-            if (r > 1.0) {
-                discard;
-            }
-            gl_FragColor = vec4(color, alpha * (1.0 - r));
-        }
-      `,
+        uniform vec3 color; void main() {
+            float r = dot(2.0 * gl_PointCoord - 1.0, 2.0 * gl_PointCoord - 1.0);
+            if (r > 1.0) discard;
+            gl_FragColor = vec4(color, 1.0 - r);
+        }`,
       transparent: true,
   });
 
@@ -77,22 +60,12 @@ function NeuralNetwork() {
     <group ref={group}>
         <points ref={particles} material={particleShaderMaterial}>
             <bufferGeometry>
-                <bufferAttribute
-                    attach="attributes-position"
-                    count={nodes.length}
-                    array={new Float32Array(nodes.flatMap(p => [p.x, p.y, p.z]))}
-                    itemSize={3}
-                />
+                <bufferAttribute attach="attributes-position" count={nodes.length} array={new Float32Array(nodes.flatMap(p => [p.x, p.y, p.z]))} itemSize={3}/>
             </bufferGeometry>
         </points>
         <lineSegments material={lineMaterial}>
             <bufferGeometry>
-                <bufferAttribute
-                    attach="attributes-position"
-                    count={lines.length / 3}
-                    array={lines}
-                    itemSize={3}
-                />
+                <bufferAttribute attach="attributes-position" count={lines.length / 3} array={lines} itemSize={3}/>
             </bufferGeometry>
         </lineSegments>
     </group>

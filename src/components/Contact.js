@@ -1,23 +1,25 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Contact = () => {
   return (
-    <div className="contact-container">
-      <h2>Hubungi Saya</h2>
-      <p>
-        Saya selalu terbuka untuk diskusi, kolaborasi, atau peluang baru.
-        Jangan ragu untuk menghubungi saya.
-      </p>
-      <a href="mailto:emailanda@example.com" className="cta-button">
-        Kirim Email
-      </a>
-      <div className="social-links">
-        {/* Ganti '#' dengan link sosial media Anda */}
-        <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a>
-      </div>
-    </div>
+    <section id="contact" className="contact-section">
+      <motion.div 
+        className="contact-container"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.8 }}
+      >
+        <h2 className="section-title">/mulai-percakapan</h2>
+        <p>
+          Saya sedang mencari peluang baru dan pintu saya selalu terbuka. Baik Anda memiliki pertanyaan atau hanya ingin menyapa, saya akan berusaha sebaik mungkin untuk membalas Anda!
+        </p>
+        <a href="mailto:emailanda@example.com" className="cta-button">
+          Kirim Pesan <span className="arrow-icon">&rarr;</span>
+        </a>
+      </motion.div>
+    </section>
   );
 };
 
