@@ -16,12 +16,6 @@ const Projects = () => {
 
   return (
     <section id="projects" className="projects-section">
-      <div className="projects-header">
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.8 }}>
-          <h2 className="section-title">/proyek-unggulan</h2>
-          <p>Geser untuk menjelajahi karya saya.</p>
-        </motion.div>
-      </div>
       <div ref={targetRef} className="projects-horizontal-container">
         <div className="projects-sticky-container">
           <motion.div style={{ x }} className="projects-horizontal-scroll">

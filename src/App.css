@@ -142,14 +142,6 @@ body.light .cta-button {
   width: 100%; 
   overflow: hidden;
 }
-.projects-header { 
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center; 
-  z-index: 1;
-}
 .projects-horizontal-scroll { 
   position: absolute; 
   top: 0;
@@ -183,11 +175,27 @@ body.light .tag { background-color: rgba(14, 165, 233, 0.1); }
 
 /* --- Skills Section --- */
 .skills-section { text-align: center; }
-.skills-canvas-container {
-    width: 100%;
-    height: 60vh;
-    max-width: 900px;
-    margin: 2rem auto 0;
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 2rem auto 0;
+}
+.skill-item {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1.5rem 2rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.skill-item:hover {
+  transform: translateY(-5px) scale(1.05);
+  border-color: var(--primary-color);
+  background-color: var(--bg-color);
+  box-shadow: 0 0 20px var(--shadow-color);
 }
 
 /* --- Contact Section --- */

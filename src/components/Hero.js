@@ -3,7 +3,7 @@ import Canvas3D from './Canvas3D';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
-  const title = "Nama Anda";
+  const title = "Hi, Visitor!";
   const sentence = {
     hidden: { opacity: 1 },
     visible: { opacity: 1, transition: { staggerChildren: 0.05 } },

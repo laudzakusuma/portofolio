@@ -52,7 +52,7 @@ function App() {
               <Contact />
             </main>
             <footer className="footer">
-              <p>&copy; 2024 Nama Anda. Didesain & Dikembangkan dengan Semangat.</p>
+              <p>&copy; 2025 Laudza Kusuma. All rights reserved.</p>
             </footer>
           </>
         )}
