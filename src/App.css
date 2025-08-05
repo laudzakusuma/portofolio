@@ -181,6 +181,7 @@ body.light .cta-button {
   border: 1px solid var(--border-color);
   display: flex; flex-direction: column;
   transition: all 0.4s ease;
+  position: relative;
 }
 .card-image-container { flex-grow: 1; overflow: hidden; border-radius: 20px 20px 0 0; }
 .project-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
@@ -189,6 +190,34 @@ body.light .cta-button {
 .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
 .tag { background-color: rgba(56, 189, 248, 0.1); color: var(--primary-color); padding: 0.25rem 0.75rem; border-radius: 5px; font-size: 0.8rem; font-weight: 500; }
 body.light .tag { background-color: rgba(14, 165, 233, 0.1); }
+.project-links {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.project-card:hover .project-links {
+    opacity: 1;
+}
+.project-link-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(2, 6, 17, 0.7);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+.project-link-button:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+}
 
 /* --- Skills Section --- */
 .skills-section { text-align: center; }
@@ -305,11 +334,118 @@ body.light .form-group label.active {
 @media (max-width: 768px) {
   .desktop-nav-menu { display: none; }
   .nav-icon { display: block; }
-  .about-container { grid-template-columns: 1fr; }
-  .about-image-container { display: none; }
-  .projects-section { height: auto; padding: 5rem 1.5rem; }
-  .projects-horizontal-container { height: auto; }
-  .projects-sticky-container { position: static; height: auto; }
-  .projects-horizontal-scroll { position: static; flex-direction: column; padding: 0; gap: 2rem; }
-  .project-card-wrapper { flex: 1 1 auto; width: 100%; height: auto; max-width: 100%; perspective: none; }
+  .about-container { grid-template-columns: 1fr; text-align: center; }
+  .about-graphic-wrapper { margin-top: 2rem; }
+  .about-image-container { width: 250px; height: 375px; margin: 0 auto; }
+  .projects-section { display: none; }
+  .projects-section-mobile { padding: 5rem 1.5rem; }
+  .projects-grid-mobile { display: grid; gap: 2rem; }
+  .project-card-wrapper { width: 100%; height: auto; perspective: none; }
+}
+
+.desktop-nav-menu {
+  display: none;
+}
+
+.nav-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.bar {
+  width: 25px;
+  height: 2px;
+  background-color: #64ffda;
+  transition: all 0.3s ease-in-out;
+}
+
+.bar2 {
+  margin: 6px 0;
+}
+
+.bar1.active {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+
+.bar2.active {
+  transform: rotate(-45deg) translate(4px, -5px);
+}
+
+.mobile-nav-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 75%;
+  max-width: 300px;
+  height: 100vh;
+  background-color: #112240;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-nav-menu > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.mobile-nav-item {
+  color: #ccd6f6;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+.mobile-theme-toggle {
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .desktop-nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-item {
+    color: #ccd6f6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .nav-item:hover {
+    color: #64ffda;
+  }
+
+  .nav-icon {
+    display: none;
+  }
+}
+
+body.light-mode .mobile-nav-menu {
+  background-color: #f8f9fa;
+}
+
+body.light-mode .mobile-nav-item {
+  color: #212529; 
+  font-weight: 700;
+}
+
+body.light-mode .mobile-nav-item::before {
+  color: #007bff; 
+}
+
+body.light-mode .mobile-nav-item:hover {
+  color: #007bff;
+}
+
+body.light-mode .bar {
+    background-color: #212529;
 }

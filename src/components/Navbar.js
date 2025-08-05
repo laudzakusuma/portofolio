@@ -16,10 +16,24 @@ const Navbar = () => {
   }, []);
 
   const menuVariants = {
-    hidden: { x: '100%' },
-    visible: { x: 0, transition: { type: 'spring', stiffness: 120, damping: 20 } },
-    exit: { x: '100%', transition: { duration: 0.3 } }
-  };
+  // Animasi saat menu tersembunyi (sebelumnya x: '100%')
+  hidden: { 
+    opacity: 0,
+    transition: { 
+      duration: 0.2, // Percepat transisi keluar
+      when: "afterChildren" // Tunggu anak-anak hilang dulu
+    } 
+  },
+  // Animasi saat menu terlihat
+  visible: { 
+    opacity: 1,
+    transition: { 
+      duration: 0.3, // Perlambat transisi masuk
+      when: "beforeChildren", // Tampilkan parent dulu, baru anak
+      staggerChildren: 0.1 // Beri jeda antar animasi anak
+    }
+  },
+};
 
   const navItemVariants = {
     hidden: { opacity: 0, y: 20 },
