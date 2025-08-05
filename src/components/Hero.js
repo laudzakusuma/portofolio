@@ -1,17 +1,15 @@
 import React from 'react';
 import Canvas3D from './Canvas3D';
 import { motion } from 'framer-motion';
+import { useTypewriter, Cursor } from 'react-simple-typewriter';
 
 const Hero = () => {
-  const title = "Hi, Visitor!";
-  const sentence = {
-    hidden: { opacity: 1 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
-  };
-  const letter = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
-  };
+  const [text] = useTypewriter({
+    words: ['Web 3 Enthusiast', 'Smart Contract Developer', 'SUI Developer'],
+    loop: {},
+    typeSpeed: 120,
+    deleteSpeed: 80,
+  });
 
   return (
     <section id="hero" className="hero-section">
@@ -19,20 +17,18 @@ const Hero = () => {
         <Canvas3D />
       </div>
       <div className="hero-content">
-        <motion.h1 variants={sentence} initial="hidden" animate="visible">
-          {title.split("").map((char, index) => (
-            <motion.span key={char + "-" + index} variants={letter}>
-              {char}
-            </motion.span>
-          ))}
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-        >
-          Arsitek Digital yang Merancang Pengalaman Web Masa Depan.
-        </motion.p>
+        <h1>
+          Hi, Visitor!
+        </h1>
+        <p>
+          Welcome to my Personal Portfolio. I'm Laudza Kusuma, a {' '}
+          <span style={{ fontWeight: 'bold', color: 'var(--primary-color)' }}>
+            {text}
+          </span>
+          <span style={{ color: 'var(--accent-color)' }}>
+            <Cursor cursorStyle='|' />
+          </span>
+        </p>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}

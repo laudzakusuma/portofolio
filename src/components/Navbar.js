@@ -32,11 +32,11 @@ const Navbar = () => {
         <div className="nav-container">
           <a href="#hero" className="nav-logo magnetic-link">L7</a>
           <div className="desktop-nav-menu">
-            <a href="#about" className="nav-item magnetic-link">/tentang</a>
-            <a href="#projects" className="nav-item magnetic-link">/proyek</a>
-            <a href="#events" className="nav-item magnetic-link">/event</a>
-            <a href="#skills" className="nav-item magnetic-link">/keahlian</a>
-            <a href="#contact" className="nav-item magnetic-link">/kontak</a>
+            <a href="#about" className="nav-item magnetic-link">/About</a>
+            <a href="#projects" className="nav-item magnetic-link">/Projects</a>
+            <a href="#events" className="nav-item magnetic-link">/events</a>
+            <a href="#skills" className="nav-item magnetic-link">/Skills</a>
+            <a href="#contact" className="nav-item magnetic-link">/Contact</a>
             <ThemeToggle />
           </div>
           <div className="nav-icon magnetic-link" onClick={toggleMenu}>
@@ -55,11 +55,11 @@ const Navbar = () => {
             exit="exit"
           >
             <motion.div variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
-              <motion.a href="#about" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Tentang</motion.a>
-              <motion.a href="#projects" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Proyek</motion.a>
-              <motion.a href="#events" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Event</motion.a>
-              <motion.a href="#skills" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Keahlian</motion.a>
-              <motion.a href="#contact" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Kontak</motion.a>
+              <motion.a href="#about" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>About</motion.a>
+              <motion.a href="#projects" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Projects</motion.a>
+              <motion.a href="#events" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Events</motion.a>
+              <motion.a href="#skills" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Skills</motion.a>
+              <motion.a href="#contact" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Contact</motion.a>
               <div className="mobile-theme-toggle">
                 <ThemeToggle />
               </div>
