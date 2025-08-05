@@ -40,8 +40,8 @@ const Navbar = () => {
             <ThemeToggle />
           </div>
           <div className="nav-icon magnetic-link" onClick={toggleMenu}>
-            <div className={`bar ${isOpen ? 'bar1' : ''}`}></div>
-            <div className={`bar ${isOpen ? 'bar2' : ''}`}></div>
+            <div className={`bar bar1 ${isOpen ? 'active' : ''}`}></div>
+            <div className={`bar bar2 ${isOpen ? 'active' : ''}`}></div>
           </div>
         </div>
       </nav>
