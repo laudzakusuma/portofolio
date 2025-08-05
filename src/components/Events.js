@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 
 // Ganti dengan path gambar Anda di folder /public/events/
 const eventData = [
-    { id: 1, src: '/events/event1.jpg', span: 2 },
-    { id: 2, src: '/events/event2.jpg', span: 1 },
-    { id: 3, src: '/events/event3.jpg', span: 1 },
-    { id: 4, src: '/events/event4.jpg', span: 2 },
-    { id: 5, src: '/events/event5.jpg', span: 1 },
+  { id: 1, src: '/events/event1.jpg', title: 'Konferensi Web Dev 2024', description: 'Berbagi wawasan tentang masa depan React.' },
+  { id: 2, src: '/events/event2.jpg', title: 'Workshop UI/UX', description: 'Sesi langsung merancang dengan Figma.' },
+  { id: 3, src: '/events/event3.jpg', title: 'Meetup Komunitas', description: 'Diskusi panel tentang tren teknologi.' },
+  { id: 4, src: '/events/event4.jpg', title: 'Hackathon Nasional', description: 'Membangun aplikasi dalam 24 jam.' },
+  { id: 5, src: '/events/event5.jpg', title: 'Pameran Teknologi', description: 'Mempresentasikan proyek terbaru.' },
 ];
 
 const Events = () => {
@@ -38,12 +38,17 @@ const Events = () => {
                     {eventData.map(item => (
                         <motion.div
                             key={item.id}
-                            className="event-item"
-                            style={{ gridColumn: `span ${item.span}` }}
+                            className="event-card"
                             variants={itemVariants}
+                            whileHover={{ y: -5, scale: 1.03 }}
                         >
-                            <img src={item.src} alt={`Event ${item.id}`} />
-                            <div className="event-overlay"></div>
+                            <div className="event-image-container">
+                                <img src={item.src} alt={item.title} />
+                            </div>
+                            <div className="event-card-content">
+                                <h3>{item.title}</h3>
+                                <p>{item.description}</p>
+                            </div>
                         </motion.div>
                     ))}
                 </motion.div>

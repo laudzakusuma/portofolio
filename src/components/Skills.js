@@ -34,7 +34,7 @@ const Skills = () => {
   return (
     <section id="skills" className="skills-section">
       <div className="skills-container">
-        <h2 className="section-title">/Skills</h2>
+        <h2 className="section-title">/teknologi-pilihan</h2>
         <motion.div
           className="skills-grid"
           variants={containerVariants}

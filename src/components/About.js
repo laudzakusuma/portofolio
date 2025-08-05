@@ -23,7 +23,7 @@ const About = () => {
     <section id="about" className="about-section" ref={containerRef}>
       <div className="about-container">
         <div className="about-text">
-          <h2 className="section-title">/About-me</h2>
+          <h2 className="section-title">/tentang-saya</h2>
           <TextReveal>
             Saya adalah seorang perancang dan pengembang web yang terobsesi dengan titik temu antara desain yang bersih dan teknologi yang canggih. Saya percaya bahwa setiap baris kode dapat menjadi sebuah sapuan kuas, menciptakan pengalaman digital yang tidak hanya fungsional, tetapi juga berkesan dan intuitif.
           </TextReveal>

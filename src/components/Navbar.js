@@ -34,7 +34,7 @@ const Navbar = () => {
           <div className="desktop-nav-menu">
             <a href="#about" className="nav-item magnetic-link">/tentang</a>
             <a href="#projects" className="nav-item magnetic-link">/proyek</a>
-            <a href="#events" className="nav-item magnetic-link">/event</a> {/* <-- Tautan baru */}
+            <a href="#events" className="nav-item magnetic-link">/event</a>
             <a href="#skills" className="nav-item magnetic-link">/keahlian</a>
             <a href="#contact" className="nav-item magnetic-link">/kontak</a>
             <ThemeToggle />
@@ -57,7 +57,7 @@ const Navbar = () => {
             <motion.div variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
               <motion.a href="#about" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Tentang</motion.a>
               <motion.a href="#projects" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Proyek</motion.a>
-              <motion.a href="#events" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Event</motion.a> {/* <-- Tautan baru */}
+              <motion.a href="#events" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Event</motion.a>
               <motion.a href="#skills" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Keahlian</motion.a>
               <motion.a href="#contact" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Kontak</motion.a>
               <div className="mobile-theme-toggle">
