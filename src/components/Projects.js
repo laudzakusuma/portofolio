@@ -12,20 +12,24 @@ const projectData = [
 const Projects = () => {
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: targetRef });
-  const x = useTransform(scrollYProgress, [0, 1], ["1%", "-75%"]);
+  const x = useTransform(scrollYProgress, [0.1, 0.95], ["0%", "-75%"]);
 
   return (
-    <section id="projects" ref={targetRef} className="projects-section">
-      <div className="projects-sticky-container">
-        <div className="projects-header">
-          <h2 className="section-title">/proyek-unggulan</h2>
-          <p>Geser untuk menjelajahi karya saya.</p>
+    <section id="projects" className="projects-section">
+      <div ref={targetRef} className="projects-horizontal-container">
+        <div className="projects-sticky-container">
+          <div className="projects-header">
+            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.8 }}>
+              <h2 className="section-title">/proyek-unggulan</h2>
+              <p>Geser untuk menjelajahi karya saya.</p>
+            </motion.div>
+          </div>
+          <motion.div style={{ x }} className="projects-horizontal-scroll">
+            {projectData.map((project, index) => (
+              <ProjectCard key={index} {...project} />
+            ))}
+          </motion.div>
         </div>
-        <motion.div style={{ x }} className="projects-horizontal-scroll">
-          {projectData.map((project, index) => (
-            <ProjectCard key={index} {...project} />
-          ))}
-        </motion.div>
       </div>
     </section>
   );

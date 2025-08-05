@@ -38,7 +38,7 @@ const Hero = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 1.2 }}
         >
-          <a href="#projects" className="cta-button">
+          <a href="#projects" className="cta-button magnetic-link">
             Lihat Karya Saya
             <span className="arrow-icon">&rarr;</span>
           </a>

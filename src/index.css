@@ -21,7 +21,7 @@ body {
   color: var(--text-color);
   line-height: 1.7;
   overflow-x: hidden;
-  cursor: none;
+  cursor: wait; /* Kursor tunggu selama loading */
 }
 h1, h2, h3 { color: var(--text-color); line-height: 1.2; font-weight: 600; }
 h1 { font-size: clamp(3rem, 7vw, 5.5rem); font-family: var(--font-mono); }

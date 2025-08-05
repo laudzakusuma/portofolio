@@ -1,43 +1,44 @@
-import React from 'react';
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+
+const TextReveal = ({ children }) => {
+    const ref = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start end", "end start"]
+    });
+    const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
+    return <motion.p ref={ref} style={{ opacity }}>{children}</motion.p>
+}
 
 const About = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
-  
-  const variants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
-  };
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
 
   return (
-    <section id="about" className="about-section" ref={ref}>
+    <section id="about" className="about-section" ref={containerRef}>
       <div className="about-container">
-        <motion.div className="about-text" variants={variants} initial="hidden" animate={isInView ? "visible" : "hidden"}>
+        <div className="about-text">
           <h2 className="section-title">/tentang-saya</h2>
-          <p>
+          <TextReveal>
             Saya adalah seorang perancang dan pengembang web yang terobsesi dengan titik temu antara desain yang bersih dan teknologi yang canggih. Saya percaya bahwa setiap baris kode dapat menjadi sebuah sapuan kuas, menciptakan pengalaman digital yang tidak hanya fungsional, tetapi juga berkesan dan intuitif.
-          </p>
-          <p>
+          </TextReveal>
+          <TextReveal>
             Dengan pengalaman dalam membangun aplikasi dari awal hingga akhir, saya menikmati setiap tahap proses pengembangan, mulai dari konseptualisasi ide, merancang arsitektur, hingga implementasi akhir yang presisi.
-          </p>
-        </motion.div>
+          </TextReveal>
+        </div>
         <div className="about-graphic-wrapper">
-          <motion.div 
-            className="about-graphic"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          >
-            <div className="code-snippet">
-              <span className="keyword">const</span> <span className="variable">passion</span> = {'{'}<br />
-              &nbsp;&nbsp;<span className="property">design</span>: <span className="string">'intuitive'</span>,<br />
-              &nbsp;&nbsp;<span className="property">code</span>: <span className="string">'efficient'</span>,<br />
-              &nbsp;&nbsp;<span className="property">experience</span>: <span className="string">'memorable'</span><br />
-              {'}'};
-            </div>
-          </motion.div>
+          <div className="about-image-container">
+            <motion.img 
+                src="/Laujaa.jpg" 
+                alt="Foto profil" 
+                style={{ y: imageY }}
+            />
+          </div>
         </div>
       </div>
     </section>

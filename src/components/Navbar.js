@@ -29,14 +29,14 @@ const Navbar = () => {
     <>
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="nav-container">
-          <a href="#hero" className="nav-logo">NA.</a>
+          <a href="#hero" className="nav-logo magnetic-link">NA.</a>
           <div className="desktop-nav-menu">
-            <a href="#about" className="nav-item">/tentang</a>
-            <a href="#projects" className="nav-item">/proyek</a>
-            <a href="#skills" className="nav-item">/keahlian</a>
-            <a href="#contact" className="nav-item">/kontak</a>
+            <a href="#about" className="nav-item magnetic-link">/tentang</a>
+            <a href="#projects" className="nav-item magnetic-link">/proyek</a>
+            <a href="#skills" className="nav-item magnetic-link">/keahlian</a>
+            <a href="#contact" className="nav-item magnetic-link">/kontak</a>
           </div>
-          <div className="nav-icon" onClick={toggleMenu}>
+          <div className="nav-icon magnetic-link" onClick={toggleMenu}>
             <div className={`bar ${isOpen ? 'bar1' : ''}`}></div>
             <div className={`bar ${isOpen ? 'bar2' : ''}`}></div>
           </div>
