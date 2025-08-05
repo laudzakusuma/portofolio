@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ThemeToggle from './ThemeToggle'; // Impor saklar tema
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +36,7 @@ const Navbar = () => {
             <a href="#projects" className="nav-item magnetic-link">/proyek</a>
             <a href="#skills" className="nav-item magnetic-link">/keahlian</a>
             <a href="#contact" className="nav-item magnetic-link">/kontak</a>
+            <ThemeToggle /> {/* Tambahkan saklar tema di sini */}
           </div>
           <div className="nav-icon magnetic-link" onClick={toggleMenu}>
             <div className={`bar ${isOpen ? 'bar1' : ''}`}></div>
@@ -56,6 +58,9 @@ const Navbar = () => {
               <motion.a href="#projects" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Proyek</motion.a>
               <motion.a href="#skills" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Keahlian</motion.a>
               <motion.a href="#contact" className="mobile-nav-item" onClick={closeMenu} variants={navItemVariants}>Kontak</motion.a>
+              <div className="mobile-theme-toggle">
+                <ThemeToggle />
+              </div>
             </motion.div>
           </motion.div>
         )}

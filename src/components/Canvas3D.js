@@ -1,12 +1,14 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useContext } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import { ThemeContext } from '../App';
 
 function NeuralNetwork() {
   const group = useRef();
   const particles = useRef();
+  const { theme } = useContext(ThemeContext);
 
-  const { nodes, lines } = useMemo(() => {
+  const { nodes, lines, lineMaterial, particleShaderMaterial } = useMemo(() => {
     const numNodes = 50;
     const nodes = Array.from({ length: numNodes }, () => new THREE.Vector3(
       THREE.MathUtils.randFloatSpread(5),
@@ -23,8 +25,30 @@ function NeuralNetwork() {
         });
     });
 
-    return { nodes, lines: new Float32Array(linePositions) };
-  }, []);
+    const lineMaterial = new THREE.LineBasicMaterial({
+      color: theme === 'light' ? '#0ea5e9' : '#38bdf8',
+      transparent: true,
+      opacity: 0.15
+    });
+
+    const particleShaderMaterial = new THREE.ShaderMaterial({
+        uniforms: { time: { value: 0.0 }, color: { value: new THREE.Color(theme === 'light' ? '#ec4899' : '#f472b6') }},
+        vertexShader: `
+          uniform float time; void main() {
+            vec3 p = position; p.y += sin(p.x * 2.0 + time) * 0.1;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0); gl_PointSize = 5.0;
+          }`,
+        fragmentShader: `
+          uniform vec3 color; void main() {
+              float r = dot(2.0 * gl_PointCoord - 1.0, 2.0 * gl_PointCoord - 1.0);
+              if (r > 1.0) discard;
+              gl_FragColor = vec4(color, 1.0 - r);
+          }`,
+        transparent: true,
+    });
+
+    return { nodes, lines: new Float32Array(linePositions), lineMaterial, particleShaderMaterial };
+  }, [theme]);
 
   useFrame((state, delta) => {
     const { pointer, clock } = state;
@@ -34,26 +58,6 @@ function NeuralNetwork() {
     if (particles.current) {
         particles.current.material.uniforms.time.value = clock.elapsedTime;
     }
-  });
-  
-  const lineMaterial = new THREE.LineBasicMaterial({
-    color: '#38bdf8', transparent: true, opacity: 0.15
-  });
-  
-  const particleShaderMaterial = new THREE.ShaderMaterial({
-      uniforms: { time: { value: 0.0 }, color: { value: new THREE.Color('#f472b6') }},
-      vertexShader: `
-        uniform float time; void main() {
-          vec3 p = position; p.y += sin(p.x * 2.0 + time) * 0.1;
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0); gl_PointSize = 5.0;
-        }`,
-      fragmentShader: `
-        uniform vec3 color; void main() {
-            float r = dot(2.0 * gl_PointCoord - 1.0, 2.0 * gl_PointCoord - 1.0);
-            if (r > 1.0) discard;
-            gl_FragColor = vec4(color, 1.0 - r);
-        }`,
-      transparent: true,
   });
 
   return (
@@ -73,10 +77,11 @@ function NeuralNetwork() {
 }
 
 const Canvas3D = () => {
+  const { theme } = useContext(ThemeContext);
   return (
     <Canvas camera={{ position: [0, 0, 5], fov: 60 }}>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} color="#38bdf8" intensity={2} />
+      <ambientLight intensity={theme === 'light' ? 1.5 : 0.5} />
+      <pointLight position={[10, 10, 10]} color={theme === 'light' ? '#0ea5e9' : '#38bdf8'} intensity={theme === 'light' ? 3 : 2} />
       <NeuralNetwork />
     </Canvas>
   );

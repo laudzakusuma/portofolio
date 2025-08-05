@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Text } from '@react-three/drei';
 import * as THREE from 'three';
+import { ThemeContext } from '../App';
 
 const skillsList = [
   'React', 'JavaScript', 'Three.js', 'HTML5', 'CSS3', 'Node.js', 
@@ -9,15 +10,17 @@ const skillsList = [
 ];
 
 function SkillOrb({ position, text }) {
+    const { theme } = useContext(ThemeContext);
+    const materialColor = theme === 'light' ? '#e2e8f0' : '#0f172a';
     return (
         <group position={position}>
             <mesh>
                 <sphereGeometry args={[0.7, 32, 32]} />
-                <meshStandardMaterial color="#0f172a" roughness={0.5} metalness={0.1} />
+                <meshStandardMaterial color={materialColor} roughness={0.5} metalness={0.1} />
             </mesh>
             <Text
                 fontSize={0.25}
-                color="white"
+                color={theme === 'light' ? '#0f172a' : '#e2e8f0'}
                 anchorX="center"
                 anchorY="middle"
             >
@@ -43,7 +46,6 @@ function PhysicsScene() {
             if (Math.abs(orb.position.y) > bounds.y) orb.velocity.y *= -1;
             if (Math.abs(orb.position.z) > bounds.z) orb.velocity.z *= -1;
         });
-        // This is a simplified physics simulation. A real one would handle collisions between orbs.
     });
     
     return (

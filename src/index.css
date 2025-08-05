@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
+  /* Dark Theme (Default) */
   --bg-color: #020617;
   --primary-color: #38bdf8;
   --secondary-color: #0f172a;
@@ -9,8 +10,24 @@
   --text-secondary: #94a3b8;
   --border-color: rgba(56, 189, 248, 0.1);
   --shadow-color: rgba(56, 189, 248, 0.1);
+  --cursor-color-default: rgba(244, 114, 182, 0);
+  --cursor-color-hover: rgba(244, 114, 182, 0.5);
   --font-sans: 'Poppins', sans-serif;
   --font-mono: 'Space Mono', monospace;
+}
+
+body.light {
+  /* Light Theme */
+  --bg-color: #f8fafc;
+  --primary-color: #0ea5e9;
+  --secondary-color: #ffffff;
+  --accent-color: #ec4899;
+  --text-color: #0f172a;
+  --text-secondary: #64748b;
+  --border-color: rgba(14, 165, 233, 0.1);
+  --shadow-color: rgba(14, 165, 233, 0.1);
+  --cursor-color-default: rgba(14, 165, 233, 0);
+  --cursor-color-hover: rgba(14, 165, 233, 0.5);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,9 +38,12 @@ body {
   color: var(--text-color);
   line-height: 1.7;
   overflow-x: hidden;
-  cursor: wait; /* Kursor tunggu selama loading */
+  cursor: wait;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
-h1, h2, h3 { color: var(--text-color); line-height: 1.2; font-weight: 600; }
+h1, h2, h3, p, a, span {
+    transition: color 0.5s ease;
+}
 h1 { font-size: clamp(3rem, 7vw, 5.5rem); font-family: var(--font-mono); }
 h2.section-title {
   font-size: clamp(1.5rem, 4vw, 2.2rem);
@@ -34,7 +54,7 @@ h2.section-title {
   position: relative;
 }
 p { color: var(--text-secondary); font-size: 1.1rem; max-width: 65ch; }
-a { text-decoration: none; color: var(--primary-color); transition: color 0.3s ease; cursor: none; }
+a { text-decoration: none; color: var(--primary-color); cursor: none; }
 a:hover { color: var(--accent-color); }
 section {
   padding: 6rem 2rem;

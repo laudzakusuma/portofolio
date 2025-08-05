@@ -53,8 +53,8 @@ const CustomCursor = () => {
     }, [xSpring, ySpring, xMagnetic, yMagnetic]);
 
     const cursorVariants = {
-        default: { scale: 1, backgroundColor: "rgba(244, 114, 182, 0)" },
-        hover: { scale: 2.5, backgroundColor: "rgba(244, 114, 182, 0.5)" }
+        default: { scale: 1, backgroundColor: "var(--cursor-color-default)" },
+        hover: { scale: 2.5, backgroundColor: "var(--cursor-color-hover)" }
     };
 
     return (
