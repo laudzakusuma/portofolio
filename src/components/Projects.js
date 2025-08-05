@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import ProjectCard from './ProjectCard';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -10,18 +10,36 @@ const projectData = [
 ];
 
 const Projects = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: targetRef });
   const x = useTransform(scrollYProgress, [0.1, 0.95], ["0%", "-75%"]);
 
+  if (isMobile) {
+    return (
+      <section id="projects" className="projects-section-mobile">
+        <div className="projects-header">
+          <h2 className="section-title">/proyek-unggulan</h2>
+        </div>
+        <div className="projects-grid-mobile">
+          {projectData.map((project, index) => (
+            <ProjectCard key={index} {...project} />
+          ))}
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="projects" className="projects-section">
-      <div className="projects-header">
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.8 }}>
-          <h2 className="section-title">/proyek-unggulan</h2>
-          <p>Geser untuk menjelajahi karya saya.</p>
-        </motion.div>
-      </div>
       <div ref={targetRef} className="projects-horizontal-container">
         <div className="projects-sticky-container">
           <motion.div style={{ x }} className="projects-horizontal-scroll">
