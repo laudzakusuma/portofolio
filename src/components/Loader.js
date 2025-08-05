@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const Loader = () => {
-    const text = "Tunggu Sebentar Yaaa...";
+    const text = "Membangun Jaringan Neural...";
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { staggerChildren: 0.08 } },

@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
+import Events from './components/Events'; // <-- Impor komponen baru
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import CustomCursor from './components/CustomCursor';
@@ -37,6 +38,7 @@ function App() {
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div className="App">
         <CustomCursor />
+        <div className="aurora-background"></div>
         <AnimatePresence>
           {loading && <Loader />}
         </AnimatePresence>
@@ -48,11 +50,12 @@ function App() {
               <Hero />
               <About />
               <Projects />
+              <Events /> {/* <-- Tambahkan bagian baru di sini */}
               <Skills />
               <Contact />
             </main>
             <footer className="footer">
-              <p>&copy; 2025 Laudza Kusuma. All rights reserved.</p>
+              <p>&copy; 2024 Nama Anda. Didesain & Dikembangkan dengan Semangat.</p>
             </footer>
           </>
         )}
