@@ -3,10 +3,10 @@ import ProjectCard from './ProjectCard';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const projectData = [
-  { title: 'TriUnity', description: 'Platform analitik data real-time.', imageUrl: 'https://placehold.co/800x600/1e293b/e0e0e0?text=Genesis', tags: ['Rust'], githubUrl: 'https://github.com/laudzakusuma/TriUnity.git', liveUrl: 'https://triunity-ultimate-9n3drl5kv-laudzas-projects.vercel.app/' },
-  { title: 'NusaX', description: 'E-commerce imersif dengan visualisasi 3D.', imageUrl: 'https://placehold.co/800x600/1e293b/e0e0e0?text=Aura', tags: ['Solidity', 'Hardhat'], githubUrl: 'https://github.com/laudzakusuma/nusax_coin.git', liveUrl: 'https://suiscan.xyz/testnet/object/0xc45ff3849c558734d7eec64fa1dbcc481f2bee0b27b31cdda020a1e2709e73b7/tx-blocks' },
-  { title: 'Neuro-Net Visualizer', description: 'Visualisasi model jaringan saraf.', imageUrl: 'https://placehold.co/800x600/1e293b/e0e0e0?text=NeuroNet', tags: ['Three.js', 'TypeScript'], githubUrl: '#', liveUrl: '#' },
-  { title: 'Quantum Leap', description: 'Aplikasi manajemen proyek canggih.', imageUrl: 'https://placehold.co/800x600/1e293b/e0e0e0?text=Quantum', tags: ['Next.js', 'GraphQL', 'Prisma'], githubUrl: '#', liveUrl: '#' },
+  { title: 'TriUnity', description: 'Platform analitik data real-time.', tags: ['Rust'], githubUrl: 'https://github.com/laudzakusuma/TriUnity.git', liveUrl: 'https://triunity-ultimate-9n3drl5kv-laudzas-projects.vercel.app/' },
+  { title: 'NusaX', description: 'E-commerce imersif dengan visualisasi 3D.', tags: ['Solidity', 'Hardhat', 'SUI Network', 'slash'], githubUrl: 'https://github.com/laudzakusuma/nusax_coin.git', liveUrl: 'https://suiscan.xyz/testnet/object/0xc45ff3849c558734d7eec64fa1dbcc481f2bee0b27b31cdda020a1e2709e73b7/tx-blocks' },
+  { title: 'Crowdfunding', description: 'Visualisasi model jaringan saraf.', tags: ['Three.js', 'JavaScript', 'React', 'ETH Sepolia', 'Metamask'], githubUrl: 'https://github.com/laudzakusuma/web3', liveUrl: 'https://client-chi-mocha.vercel.app/login' },
+  { title: 'Quantum Leap', description: 'Aplikasi manajemen proyek canggih.', tags: ['Next.js', 'GraphQL', 'Prisma'], githubUrl: '#', liveUrl: '#' },
 ];
 
 const Projects = () => {
@@ -27,7 +27,7 @@ const Projects = () => {
     return (
       <section id="projects" className="projects-section-mobile">
         <div className="projects-header">
-          <h2 className="section-title">/proyek-unggulan</h2>
+          <h2 className="section-title"></h2>
         </div>
         <div className="projects-grid-mobile">
           {projectData.map((project, index) => (

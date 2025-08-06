@@ -23,9 +23,9 @@ const About = () => {
     <section id="about" className="about-section" ref={containerRef}>
       <div className="about-container">
         <div className="about-text">
-          <h2 className="section-title">/About_Leo</h2>
+          <h2 className="section-title">/About</h2>
           <TextReveal>
-            Hello! I'm Leo. I view Web3 as more than just a technological evolution; it's a foundational shift towards a more equitable and user-owned digital world. This vision of empowering individuals through decentralization is what drives me every day, pushing me beyond simple curiosity and into active participation and creation.
+            Hello! I'm Laudza. I view Web3 as more than just a technological evolution; it's a foundational shift towards a more equitable and user-owned digital world. This vision of empowering individuals through decentralization is what drives me every day, pushing me beyond simple curiosity and into active participation and creation.
           </TextReveal>
           <TextReveal>
             To help turn this vision into reality, I have cultivated an intermediate skill set focused on the core components of the ecosystem. I possess practical experience in developing and deploying smart contracts on EVM chains using Solidity and have built dApp front-ends that interact with them. My projects demonstrate a solid grasp of token standards like ERC-721, wallet integration, and decentralized storage. I am now eager to apply my skills to more complex challenges and contribute to a team that is building impactful, real-world solutions.
